@@ -1,27 +1,77 @@
-<ion-view view-title="Dashboard">
-  <ion-content class="padding">
-    <div class="list card">
-      <div class="item item-divider">Recent Updates</div>
-      <div class="item item-body">
-        <div>
-          There is a fire in <b>sector 3</b>
+<ion-view view-title="首页" class="scroll-bg">
+  <ion-content class="scroll-bg" scroll="true">
+    <div class="row">
+      <ion-slide-box does-continue="true" auto-play="true" show-pager="true" id="ad">
+        <ion-slide>
+          <a href="#">
+            <img ng-src="img/recommend/1.png"/><!--使用ng-src-->
+          </a>
+        </ion-slide>
+        <ion-slide>
+          <a href="#">
+            <img ng-src="img/recommend/2.png"/><!--使用ng-src-->
+          </a>
+        </ion-slide>
+        <ion-slide>
+          <a href="#">
+            <img ng-src="img/recommend/3.png"/><!--使用ng-src-->
+          </a>
+        </ion-slide>
+      </ion-slide-box>
+    </div>
+
+    <div class="row" style="height: 20%">
+      <div class="col"
+           style="background-color: dodgerblue; margin: 2px; text-align: center; ">
+        <div class="ion-calendar light" style="font-size: 3em">
         </div>
+        <div class="light">店铺预约</div>
+      </div>
+      <div class="col"
+           style="background-color: dodgerblue; margin: 2px; text-align: center; ">
+        <div class="ion-lightbulb light" style="font-size: 3em">
+        </div>
+        <div class="light">活动报名</div>
       </div>
     </div>
-    <div class="list card">
-      <div class="item item-divider">Health</div>
-      <div class="item item-body">
-        <div>
-          You ate an apple today!
+    <div class="row" style="height: 20%">
+      <div class="col"
+           style="background-color: forestgreen; margin: 2px; text-align: center; ">
+        <div class="ion-music-note light" style="font-size: 3em">
         </div>
+        <div class="light">歌曲欣赏</div>
+      </div>
+      <div class="col"
+           style="background-color: forestgreen; margin: 2px; text-align: center; ">
+        <div class="ion-star light" style="font-size: 3em">
+        </div>
+        <div class="light">精彩MV</div>
+      </div>
+      <div class="col"
+           style="background-color: forestgreen; margin: 2px; text-align: center; ">
+        <div class="ion-flame light" style="font-size: 3em">
+        </div>
+        <div class="light">录音师</div>
       </div>
     </div>
-    <div class="list card">
-      <div class="item item-divider">Upcoming</div>
-      <div class="item item-body">
-        <div>
-          You have <b>29</b> meetings on your calendar tomorrow.
+    <div class="row" style="height: 20%">
+      <div class="col"
+           style="background-color: dodgerblue; margin: 2px; text-align: center; ">
+        <div class="ion-mic-a light" style="font-size: 3em">
         </div>
+        <div class="light">我的作品</div>
+      </div>
+      <div class="col"
+           style="background-color: dodgerblue; margin: 2px; text-align: center; ">
+        <div class="ion-heart light" style="font-size: 3em">
+        </div>
+        <div class="light">我的粉丝</div>
+      </div>
+      <div class="col"
+           style="background-color: dodgerblue; margin: 2px; text-align: center; ">
+        <div class="ion-happy light" style="font-size: 3em">
+        </div>
+        <div class="light">我的关注</div>
       </div>
     </div>
   </ion-content>

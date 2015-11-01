@@ -1,1 +1,13 @@
 /* Empty. Add your own CSS if you like */
+
+.scroll-bg {
+  background: url(../img/bg.jpg) no-repeat center center fixed;
+  background-size: cover;
+// width: 375px;
+// height: 669px;
+}
+
+ion-slide img{
+  width: 100%;
+  height: 200px;
+}
