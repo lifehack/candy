@@ -1,24 +1,12 @@
 <ion-view view-title="首页" class="scroll-bg">
   <ion-content class="scroll-bg" scroll="true">
-    <div class="row">
-      <ion-slide-box does-continue="true" auto-play="true" show-pager="true" id="ad">
-        <ion-slide>
-          <a href="#">
-            <img ng-src="img/recommend/1.png"/><!--使用ng-src-->
-          </a>
-        </ion-slide>
-        <ion-slide>
-          <a href="#">
-            <img ng-src="img/recommend/2.png"/><!--使用ng-src-->
-          </a>
-        </ion-slide>
-        <ion-slide>
-          <a href="#">
-            <img ng-src="img/recommend/3.png"/><!--使用ng-src-->
-          </a>
-        </ion-slide>
-      </ion-slide-box>
-    </div>
+    <ion-slide-box does-continue="true" auto-play="true" show-pager="true" id="ad">
+      <ion-slide ng-repeat="party in parties">
+        <a href="#">
+          <img ng-src="{{party.cover}}"/><!--使用ng-src-->
+        </a>
+      </ion-slide>
+    </ion-slide-box>
 
     <div class="row" style="height: 20%">
       <div class="col"

@@ -1,50 +1,40 @@
 angular.module('starter.services', [])
 
-.factory('Chats', function() {
-  // Might use a resource here that returns a JSON array
+  .factory('Parties', function () {
+    // Might use a resource here that returns a JSON array
 
-  // Some fake testing data
-  var chats = [{
-    id: 0,
-    name: 'Ben Sparrow',
-    lastText: 'You on your way?',
-    face: 'https://pbs.twimg.com/profile_images/514549811765211136/9SgAuHeY.png'
-  }, {
-    id: 1,
-    name: 'Max Lynx',
-    lastText: 'Hey, it\'s me',
-    face: 'https://avatars3.githubusercontent.com/u/11214?v=3&s=460'
-  }, {
-    id: 2,
-    name: 'Adam Bradleyson',
-    lastText: 'I should buy a boat',
-    face: 'https://pbs.twimg.com/profile_images/479090794058379264/84TKj_qa.jpeg'
-  }, {
-    id: 3,
-    name: 'Perry Governor',
-    lastText: 'Look at my mukluks!',
-    face: 'https://pbs.twimg.com/profile_images/598205061232103424/3j5HUXMY.png'
-  }, {
-    id: 4,
-    name: 'Mike Harrington',
-    lastText: 'This is wicked good ice cream.',
-    face: 'https://pbs.twimg.com/profile_images/578237281384841216/R3ae1n61.png'
-  }];
+    // Some fake testing data
+    var parties = [{
+      id: 0,
+      name: '万圣节欢唱',
+      lastText: '你准备好了么？',
+      cover: 'img/recommend/1.png'
+    }, {
+      id: 1,
+      name: '圣诞狂欢夜',
+      lastText: '等你来战！',
+      cover: 'img/recommend/2.png'
+    }, {
+      id: 2,
+      name: '元旦特辑',
+      lastText: '单曲首发！',
+      cover: 'img/recommend/3.png'
+    }];
 
-  return {
-    all: function() {
-      return chats;
-    },
-    remove: function(chat) {
-      chats.splice(chats.indexOf(chat), 1);
-    },
-    get: function(chatId) {
-      for (var i = 0; i < chats.length; i++) {
-        if (chats[i].id === parseInt(chatId)) {
-          return chats[i];
+    return {
+      all: function () {
+        return parties;
+      },
+      remove: function (party) {
+        parties.splice(parties.indexOf(party), 1);
+      },
+      get: function (partyId) {
+        for (var i = 0; i < parties.length; i++) {
+          if (parties[i].id === parseInt(partyId)) {
+            return parties[i];
+          }
         }
+        return null;
       }
-      return null;
-    }
-  };
-});
+    };
+  });
