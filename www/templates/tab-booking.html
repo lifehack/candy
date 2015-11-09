@@ -1,9 +1,7 @@
-<ion-view view-title="预约" class="scroll-bg">
-  <ion-content class="scroll-bg">
-    <div class="row">
-    </div>
-    <div class="row">
-
-    </div>
+<ion-view view-title="预约">
+  <ion-content>
+    <ionic-datepicker input-obj="datepickerObject">
+      <button class="button button-block button-light"> {{datepickerObject.inputDate | date:'yyyy - MM - dd'}}</button>
+    </ionic-datepicker>
   </ion-content>
 </ion-view>
