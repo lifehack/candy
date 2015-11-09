@@ -2790,7 +2790,7 @@ cite {
   text-align: center; }
 
 h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
-  color: #000;
+  color: #444;
   font-weight: 500;
   font-family: "Helvetica Neue", "Roboto", "Segoe UI", sans-serif;
   line-height: 1.2; }
@@ -5097,8 +5097,8 @@ a.item-content {
   padding-bottom: 8px;
   min-height: 30px;
   background-color: #f5f5f5;
-  color: #222;
-  font-weight: 500; }
+  color: #444;
+   }
 
 .platform-ios .item-divider-platform, .item-divider-ios {
   padding-top: 26px;

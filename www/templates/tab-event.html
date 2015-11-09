@@ -7,7 +7,28 @@
         </a>
       </ion-slide>
     </ion-slide-box>
-    <div class="row">
+
+    <div class="list card" ng-repeat="party in parties">
+      <a href="#">
+        <div class="item item-image">
+          <img ng-src="{{party.cover}}">
+        </div>
+      </a>
+
+      <div class="item item-text-wrap">
+        <h2>{{party.name}}</h2>
+
+        <p>{{party.lastText}}</p>
+      </div>
+      <a class="item item-icon-left assertive" href="#">
+        <i class="icon ion-bookmark"></i>
+        报名
+      </a>
+      </div>
+
+
+    </div>
+   <!-- <div class="row">
       <ion-list>
         <ion-item class="item-remove-animate item-avatar item-icon-right" ng-repeat="party in parties"
                   type="item-text-wrap" href="#">
@@ -19,6 +40,6 @@
           <i class="icon ion-chevron-right icon-accessory"></i>
         </ion-item>
       </ion-list>
-    </div>
+    </div>-->
   </ion-content>
 </ion-view>

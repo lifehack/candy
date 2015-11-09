@@ -3,19 +3,17 @@ angular.module('starter.controllers', [])
 
   .controller('DashCtrl', function ($scope, Parties) {
     $scope.parties = Parties.all();
-    $scope.remove = function (party) {
-      Parties.remove(party);
-    };
+
   })
 
   .controller('EventCtrl', function ($scope, Parties) {
     $scope.parties = Parties.all();
-    $scope.remove = function (party) {
-      Parties.remove(party);
-    };
+
   })
 
-  .controller('BookingCtrl', function ($scope) {
+  .controller('BookingCtrl', function ($scope,Shops) {
+    $scope.shops = Shops.all();
+
     var disabledDates = [
      /* new Date(1437719836326),
       new Date(),
@@ -43,8 +41,8 @@ angular.module('starter.controllers', [])
       showTodayButton: 'true', //Optional
       modalHeaderColor: 'bar-light', //Optional
       modalFooterColor: 'bar-light', //Optional
-      from: new Date(2012, 8, 2), //Optional
-      to: new Date(),  //Optional
+      from: new Date(), //Optional
+      to: new Date(2018, 8, 25),  //Optional
       callback: function (val) {  //Mandatory
         /*datePickerCallback(val);*/
         if (typeof(val) === 'undefined') {
@@ -59,9 +57,7 @@ angular.module('starter.controllers', [])
 
   })
 
-  .controller('ChatDetailCtrl', function ($scope, $stateParams, Chats) {
-    //$scope.chat = Chats.get($stateParams.chatId);
-  })
+
 
   .controller('AccountCtrl', function ($scope) {
     $scope.settings = {
