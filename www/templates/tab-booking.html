@@ -1,42 +1,17 @@
 <ion-view view-title="预约">
   <ion-content>
-    <img class="shop-cover" src="img/1.jpg">
-    <div class="row ">
-      <div class="col-67">
-        <button class="button  button-clear button-dark">当前店面:麦乐迪青年路店</button>
-      </div>
-      <div class="col-30 ">
-        <ionic-datepicker input-obj="datepickerObject">
-          <button class="button button-clear button-dark">
-            <i class="icon ion-calendar"></i>
-            <label>
-              查看预约表
-            </label>
-          </button>
-
-        </ionic-datepicker>
-      </div>
-    </div>
-    <div class="card">
-      <div class="item item-text-wrap">
-        <div class="item item-divider">
-          更换店面
+    <div class="row">
+      <button class="button button-calm" modal-title="选择预约店面" hide-reset=true cancel-button="取消" modal-select=""
+              ng-model="someObjModel" options="shops">
+        请选择预约的店面
+        <div class="option">
+          <h2>{{option.name}}</h2>
         </div>
-        <div class="item item-text-wrap">
-          <div class="row">
-            <div class="col" ng-repeat="shop in shops">
-              <button class="button button-light button-small">
-                {{shop.name}}
-              </button>
-            </div>
-          </div>
-
-        </div>
-
-      </div>
+      </button>
     </div>
-
-
+    <div class="row">
+      <div ui-calendar="uiConfig.calendar" ng-model="eventSources" calendar="booking"></div>
+    </div>
   </ion-content>
 
 

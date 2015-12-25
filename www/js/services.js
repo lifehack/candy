@@ -42,26 +42,19 @@ angular.module('starter.services', [])
   // Might use a resource here that returns a JSON array
 
   // Some fake testing data
-  var shops = [{
-    id: 0,
-    name: '糖果量贩'
-  }, {
-    id: 1,
-    name: '北京纯K'
-  }, {
-    id: 2,
-    name: '多左KTV'
-  }, {
-    id: 3,
-    name: '北京纯K'
-  }];
+  var shops = [
+    {name: "雍和宫一店"},
+    {name: "雍和宫五店"},
+    {name: "工体店"},
+    {name: "日坛店"}
+  ];
 
   return {
     all: function () {
       return shops;
     },
     remove: function (shop) {
-      shops.splice(parties.indexOf(shop), 1);
+      shops.splice(shops.indexOf(shop), 1);
     },
     get: function (shopId) {
       for (var i = 0; i < shops.length; i++) {
