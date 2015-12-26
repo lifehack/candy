@@ -16,10 +16,8 @@ angular.module('starter.controllers', [])
 
     $scope.eventSources = [];
 
-
-
-    $scope.changeView = function(view,calendar) {
-      uiCalendarConfig.calendars[calendar].fullCalendar('changeView',view);
+    $scope.changeView = function (view, calendar) {
+      uiCalendarConfig.calendars[calendar].fullCalendar('changeView', view);
     };
 
     $scope.uiConfig = {
@@ -32,6 +30,7 @@ angular.module('starter.controllers', [])
           right: 'today prev,next'
         },
         dayClick: function (date, jsEvent, view) {
+          uiCalendarConfig.calendars['booking'].fullCalendar('gotoDate', date);
           $scope.changeView('agendaDay', 'booking');
         }
       }
