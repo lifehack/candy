@@ -16,6 +16,8 @@ angular.module('starter.controllers', [])
 
     $scope.eventSources = [];
 
+
+
     $scope.changeView = function(view,calendar) {
       uiCalendarConfig.calendars[calendar].fullCalendar('changeView',view);
     };
@@ -23,8 +25,7 @@ angular.module('starter.controllers', [])
     $scope.uiConfig = {
       calendar: {
         lang: "zh_cn",
-        height: 450,
-        editable: false,
+        height: 600,
         header: {
           left: 'title',
           center: '',
