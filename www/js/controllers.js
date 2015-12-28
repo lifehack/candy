@@ -30,8 +30,12 @@ angular.module('starter.controllers', [])
           right: 'today prev,next'
         },
         dayClick: function (date, jsEvent, view) {
-          uiCalendarConfig.calendars['booking'].fullCalendar('gotoDate', date);
-          $scope.changeView('agendaDay', 'booking');
+          var today = new Date();
+          today.getDay();
+          if (date >= today) {
+            uiCalendarConfig.calendars['booking'].fullCalendar('gotoDate', date);
+            $scope.changeView('agendaDay', 'booking');
+          }
         }
       }
     };
