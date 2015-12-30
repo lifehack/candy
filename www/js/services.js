@@ -8,7 +8,7 @@ angular.module('starter.services', [])
       id: 0,
       name: '万圣节欢唱',
       lastText: '你准备好了么？',
-      cover: 'img/recommend/1.png'
+      cover: 'img/recommend/4.jpg'
     }, {
       id: 1,
       name: '圣诞狂欢夜',

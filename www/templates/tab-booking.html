@@ -1,16 +1,24 @@
 <ion-view view-title="预约">
   <ion-content>
-    <div class="row">
-      <button class="button button-calm" modal-title="选择预约店面" hide-reset=true cancel-button="取消" modal-select=""
-              ng-model="someObjModel" options="shops">
-        请选择预约的店面
-        <div class="option">
-          <h2>{{option.name}}</h2>
+    <div class="list">
+
+      <div class="item item-input item-select">
+        <div class="input-label">
+          当前店面:
         </div>
-      </button>
-    </div>
+        <select>
+          <option selected="">雍和宫一店</option>
+          <option>雍和宫五店</option>
+          <option>工体店</option>
+          <option>日坛店</option>
+        </select>
+      </div>
+
+
     <div class="row">
-      <div data-tap-disabled="true" ui-calendar="uiConfig.calendar" ng-model="eventSources" calendar="booking"></div>
+      <div data-tap-disabled="true" ui-calendar="uiConfig.calendar" ng-model="eventSources" , calendar="booking">
+
+      </div>
     </div>
   </ion-content>
 
