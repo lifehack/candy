@@ -40,8 +40,8 @@ angular.module('starter.controllers', [])
         var events = {};
         events['events'] = [];
         $.each(bookings, function (i, booking) {
-          var start = new moment(booking.StartTime);
-          var end = new moment(booking.FinishTime);
+          var start = moment(booking.StartTime);
+          var end = moment(booking.FinishTime);
 
           var event = {};
 
@@ -54,7 +54,7 @@ angular.module('starter.controllers', [])
         events['backgroundColor'] = 'red';
         events['color'] = 'black';
         events['textColor'] = 'yellow';
-        events['rendering'] = 'background';
+        //events['rendering'] = 'background';
         console.log(events);
 
         uiCalendarConfig.calendars['booking'].fullCalendar('addEventSource', events);
@@ -83,6 +83,15 @@ angular.module('starter.controllers', [])
 
           if (!date.isBefore(now)) {
             uiCalendarConfig.calendars['booking'].fullCalendar('gotoDate', date);
+            $scope.changeView('agendaDay', 'booking');
+          }
+        },
+        eventClick: function (event, jsEvent, view) {
+          var now = moment();
+
+          console.log(event.start);
+          if (!event.start.isBefore(now)) {
+            uiCalendarConfig.calendars['booking'].fullCalendar('gotoDate', event.start);
             $scope.changeView('agendaDay', 'booking');
           }
         }
