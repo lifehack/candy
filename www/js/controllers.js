@@ -14,28 +14,18 @@ angular.module('starter.controllers', [])
   .controller('BookingCtrl', function ($scope, Shops, uiCalendarConfig) {
     $scope.shops = Shops.all();
 
-    $scope.eventSources = [
-      //{
-      //  events: [
-      //    {
-      //      start: '2016-01-08 12:30:00',
-      //      end: '2016-01-08 16:30:00'
-      //    },
-      //    {
-      //      start: '2016-01-09 12:30:00',
-      //      end: '2016-01-09 16:30:00'
-      //    }
-      //  ],
-      //  color: 'black',     // an option!
-      //  textColor: 'yellow', // an option!
-      //  backgroundColor: 'red',
-      //  rendering: 'background'
-      //}
-    ];
+    $scope.eventSources = [];
+
+    var old_source;
 
     $scope.selectedShop = function (pShop) {
       var current_date = uiCalendarConfig.calendars['booking'].fullCalendar('getDate');
+
       Shops.getBooking(pShop.id, current_date.year(), current_date.month() + 1).then(function (bookings) {
+
+        if(old_source){
+          uiCalendarConfig.calendars['booking'].fullCalendar('removeEventSource', old_source);
+        }
 
         var events = {};
         events['events'] = [];
@@ -55,8 +45,8 @@ angular.module('starter.controllers', [])
         events['color'] = 'black';
         events['textColor'] = 'yellow';
         //events['rendering'] = 'background';
-        console.log(events);
 
+        old_source = events;
         uiCalendarConfig.calendars['booking'].fullCalendar('addEventSource', events);
       });
     };
@@ -88,8 +78,6 @@ angular.module('starter.controllers', [])
         },
         eventClick: function (event, jsEvent, view) {
           var now = moment();
-
-          console.log(event.start);
           if (!event.start.isBefore(now)) {
             uiCalendarConfig.calendars['booking'].fullCalendar('gotoDate', event.start);
             $scope.changeView('agendaDay', 'booking');
