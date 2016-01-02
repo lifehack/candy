@@ -13,12 +13,54 @@ angular.module('starter.controllers', [])
 
   .controller('BookingCtrl', function ($scope, Shops, uiCalendarConfig) {
     $scope.shops = Shops.all();
-    $scope.eventSources = [];
-    $scope.update = function() {
-      $scope.item.size.code = $scope.selectedItem.code
-      // use $scope.selectedItem.code and $scope.selectedItem.name here
-      // for other stuff ...
-    }
+
+    $scope.eventSources = [
+      //{
+      //  events: [
+      //    {
+      //      start: '2016-01-08 12:30:00',
+      //      end: '2016-01-08 16:30:00'
+      //    },
+      //    {
+      //      start: '2016-01-09 12:30:00',
+      //      end: '2016-01-09 16:30:00'
+      //    }
+      //  ],
+      //  color: 'black',     // an option!
+      //  textColor: 'yellow', // an option!
+      //  backgroundColor: 'red',
+      //  rendering: 'background'
+      //}
+    ];
+
+    $scope.selectedShop = function (pShop) {
+      var current_date = uiCalendarConfig.calendars['booking'].fullCalendar('getDate');
+      Shops.getBooking(pShop.id, current_date.year(), current_date.month() + 1).then(function (bookings) {
+
+        var events = {};
+        events['events'] = [];
+        $.each(bookings, function (i, booking) {
+          var start = new moment(booking.StartTime);
+          var end = new moment(booking.FinishTime);
+
+          var event = {};
+
+          event["start"] = start.format();
+          event["end"] = end.format();
+
+          events['events'].push(event);
+        });
+
+        events['backgroundColor'] = 'red';
+        events['color'] = 'black';
+        events['textColor'] = 'yellow';
+        events['rendering'] = 'background';
+        console.log(events);
+
+        uiCalendarConfig.calendars['booking'].fullCalendar('addEventSource', events);
+      });
+    };
+
     $scope.changeView = function (view, calendar) {
       uiCalendarConfig.calendars[calendar].fullCalendar('changeView', view);
     };
@@ -32,10 +74,17 @@ angular.module('starter.controllers', [])
           center: '',
           right: 'title prev,month,today,next'
         },
+        allDaySlot: false,
+        minTime: "10:00:00",
+        maxTime: "22:00:00",
         dayClick: function (date, jsEvent, view) {
-          uiCalendarConfig.calendars['booking'].fullCalendar('gotoDate', date);
-          $scope.changeView('agendaDay', 'booking');
+          var now = new Date();
+          now.getDate();
 
+          if (!date.isBefore(now)) {
+            uiCalendarConfig.calendars['booking'].fullCalendar('gotoDate', date);
+            $scope.changeView('agendaDay', 'booking');
+          }
         }
       }
     };
@@ -46,4 +95,3 @@ angular.module('starter.controllers', [])
       enableFriends: true
     };
   });
-x

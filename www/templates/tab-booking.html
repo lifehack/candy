@@ -1,23 +1,19 @@
 <ion-view view-title="预约">
   <ion-content>
-    <div class="list">
 
-      <div class="item item-input item-select">
-        <div class="input-label">
-          当前店面:
-        </div>
-        <select ng-options="" ng-model="selectedItem" ng-change="update()">
-          <option selected="">雍和宫一店</option>
-          <option>雍和宫五店</option>
-          <option>工体店</option>
-          <option>日坛店</option>
-        </select>
+    <div class="item item-input item-select">
+      <div class="input-label">
+        当前店面:
       </div>
+      <select ng-options="shop.name for shop in shops" ng-model="shop" ng-change="selectedShop(shop)">
+        <option value="">--选择店面--</option>
+      </select>
+    </div>
 
-      <div class="row">
-      <div data-tap-disabled="true" ui-calendar="uiConfig.calendar" ng-model="eventSources" , calendar="booking">
-      </div>
+    <div class="row">
+      <div data-tap-disabled="true" ui-calendar="uiConfig.calendar" ng-model="eventSources" calendar="booking">
       </div>
     </div>
+
   </ion-content>
 </ion-view>

@@ -38,31 +38,30 @@ angular.module('starter.services', [])
       }
     };
   })
-  .factory('Shops', function () {
-  // Might use a resource here that returns a JSON array
+  .factory('Shops', function ($http) {
+    // Might use a resource here that returns a JSON array
 
-  // Some fake testing data
-  var shops = [
-    {name: "雍和宫一店"},
-    {name: "雍和宫五店"},
-    {name: "工体店"},
-    {name: "日坛店"}
-  ];
+    // Some fake testing data
+    var shops = [
+      {id: 1, name: "雍和宫一店"},
+      {id: 5, name: "雍和宫五店"},
+      {id: 2, name: "工体店"},
+      {id: 4, name: "日坛店"}
+    ];
 
-  return {
-    all: function () {
-      return shops;
-    },
-    remove: function (shop) {
-      shops.splice(shops.indexOf(shop), 1);
-    },
-    get: function (shopId) {
-      for (var i = 0; i < shops.length; i++) {
-        if (shops[i].id === parseInt(shopId)) {
-          return shops[i];
-        }
+    var bookings = [];
+
+    return {
+      all: function () {
+        return shops;
+      },
+      getBooking: function (shop_id, year, month) {
+        return $http.get("http://101.200.192.192:8888/calendar.php?year="+year+"&month="+month+"&studioNum="+shop_id+"店")
+          .then(function(response)
+          {
+            bookings = response.data;
+            return bookings;
+          });
       }
-      return null;
-    }
-  };
-});
+    };
+  });
