@@ -13,9 +13,12 @@ angular.module('starter.controllers', [])
 
   .controller('BookingCtrl', function ($scope, Shops, uiCalendarConfig) {
     $scope.shops = Shops.all();
-
     $scope.eventSources = [];
-
+    $scope.update = function() {
+      $scope.item.size.code = $scope.selectedItem.code
+      // use $scope.selectedItem.code and $scope.selectedItem.name here
+      // for other stuff ...
+    }
     $scope.changeView = function (view, calendar) {
       uiCalendarConfig.calendars[calendar].fullCalendar('changeView', view);
     };
@@ -30,12 +33,9 @@ angular.module('starter.controllers', [])
           right: 'title prev,month,today,next'
         },
         dayClick: function (date, jsEvent, view) {
-          var today = new Date();
-          today.getDay();
-          if (!date.isBefore(today)) {
-            uiCalendarConfig.calendars['booking'].fullCalendar('gotoDate', date);
-            $scope.changeView('agendaDay', 'booking');
-          }
+          uiCalendarConfig.calendars['booking'].fullCalendar('gotoDate', date);
+          $scope.changeView('agendaDay', 'booking');
+
         }
       }
     };
@@ -46,3 +46,4 @@ angular.module('starter.controllers', [])
       enableFriends: true
     };
   });
+x

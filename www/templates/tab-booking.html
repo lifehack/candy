@@ -6,7 +6,7 @@
         <div class="input-label">
           当前店面:
         </div>
-        <select>
+        <select ng-options="" ng-model="selectedItem" ng-change="update()">
           <option selected="">雍和宫一店</option>
           <option>雍和宫五店</option>
           <option>工体店</option>
@@ -14,13 +14,10 @@
         </select>
       </div>
 
-
-    <div class="row">
+      <div class="row">
       <div data-tap-disabled="true" ui-calendar="uiConfig.calendar" ng-model="eventSources" , calendar="booking">
-
+      </div>
       </div>
     </div>
   </ion-content>
-
-
 </ion-view>
