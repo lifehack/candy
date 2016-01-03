@@ -19,7 +19,10 @@ angular.module('starter.controllers', [])
     var old_source;
 
     $scope.selectedShop = function (pShop) {
-      var current_date = uiCalendarConfig.calendars['booking'].fullCalendar('getDate');
+      var current_date = moment();
+
+      uiCalendarConfig.calendars['booking'].fullCalendar('gotoDate', current_date);
+      uiCalendarConfig.calendars['booking'].fullCalendar('changeView', 'month');
 
       Shops.getBooking(pShop.id, current_date.year(), current_date.month() + 1).then(function (bookings) {
 
@@ -30,21 +33,18 @@ angular.module('starter.controllers', [])
         var events = {};
         events['events'] = [];
         $.each(bookings, function (i, booking) {
-          var start = moment(booking.StartTime);
-          var end = moment(booking.FinishTime);
-
           var event = {};
 
-          event["start"] = start.format();
-          event["end"] = end.format();
+          event["start"] = booking.StartTime;
+          event["end"] = booking.FinishTime;
 
           events['events'].push(event);
         });
 
+        events['borderColor'] = 'white';
         events['backgroundColor'] = 'red';
         events['color'] = 'black';
         events['textColor'] = 'yellow';
-        //events['rendering'] = 'background';
 
         old_source = events;
         uiCalendarConfig.calendars['booking'].fullCalendar('addEventSource', events);
@@ -67,6 +67,8 @@ angular.module('starter.controllers', [])
         allDaySlot: false,
         minTime: "10:00:00",
         maxTime: "22:00:00",
+        timeFormat: 'H:mm',
+        stick: true,
         dayClick: function (date, jsEvent, view) {
           var now = new Date();
           now.getDate();
