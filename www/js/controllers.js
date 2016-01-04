@@ -23,12 +23,13 @@ angular.module('starter.controllers', [])
 
       uiCalendarConfig.calendars['booking'].fullCalendar('gotoDate', current_date);
       uiCalendarConfig.calendars['booking'].fullCalendar('changeView', 'month');
+      if (old_source) {
+        uiCalendarConfig.calendars['booking'].fullCalendar('removeEventSource', old_source);
+      }
 
+      if (!pShop)
+        return;
       Shops.getBooking(pShop.id, current_date.year(), current_date.month() + 1).then(function (bookings) {
-
-        if(old_source){
-          uiCalendarConfig.calendars['booking'].fullCalendar('removeEventSource', old_source);
-        }
 
         var events = {};
         events['events'] = [];

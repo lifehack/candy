@@ -56,7 +56,7 @@ angular.module('starter.services', [])
         return shops;
       },
       getBooking: function (shop_id, year, month) {
-        return $http.get("http://101.200.192.192:8888/calendar.php?year="+year+"&month="+month+"&studioNum="+shop_id+"店")
+        return $http.get("http://101.200.192.192:8080/calendar.php?year="+year+"&month="+month+"&studioNum="+shop_id+"店")
           .then(function(response)
           {
             bookings = response.data;
