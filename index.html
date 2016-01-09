@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="糖果工作室" content="">
+    <meta name="A.J." content="">
+
+    <title>糖果工作室预约</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <!-- Custom styles for this template -->
+    <link href="css/style.css" rel="stylesheet">
+    <link href='css/fullcalendar.min.css' rel='stylesheet'/>
+
+</head>
+
+<body>
+
+<nav class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container ">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="#">糖果工作室预约页面</a>
+        </div>
+    </div>
+</nav>
+
+<div class="container">
+    <p></p>
+
+    <div class="btn-group btn-group-justified" role="group">
+        <div class="btn-group" role="group">
+            <button type="button" onclick="get_bookings('1店')" class="btn btn-default">雍和宫一店</button>
+        </div>
+        <div class="btn-group" role="group">
+            <button type="button" onclick="get_bookings('5店')" class="btn btn-default">雍和宫五店</button>
+        </div>
+        <div class="btn-group" role="group">
+            <button type="button" onclick="get_bookings('2店')" class="btn btn-default">工体店</button>
+        </div>
+        <div class="btn-group" role="group">
+            <button type="button" onclick="get_bookings('4店')" class="btn btn-default">日坛店</button>
+        </div>
+    </div>
+    <p></p>
+
+    <div class="row">
+        <div class="col-lg-12">
+            <div id='calendar'></div>
+        </div>
+    </div>
+
+</div>
+<!-- /.container -->
+
+
+<!-- Bootstrap core JavaScript
+================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+<script src="js/jquery.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+
+<script src='js/moment.min.js'></script>
+<script src='js/fullcalendar.min.js'></script>
+<script src='js/gcal.js'></script>
+<!--<script src='js/zh-cn.js'></script>-->
+
+<script src='js/booking.js'></script>
+
+</body>
+</html>
