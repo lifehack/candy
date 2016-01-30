@@ -4,6 +4,7 @@ angular.module('starter.controllers', [])
   .controller('DashCtrl', function ($scope, Parties) {
     $scope.parties = Parties.all();
 
+
   })
 
   .controller('EventCtrl', function ($scope, Parties) {
