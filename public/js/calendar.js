@@ -12,13 +12,14 @@ $(document).ready(function () {
         minDate: 0,
         dateFormat: 'yy-mm-dd',
         showMonthAfterYear: true,
-        beforeShowDay: highlightDays,
         yearSuffix: '年',
         nextText: '下月',
         prevText: '上月',
         monthNames: ["1月", "2月", "3月", "4月", "5月", "6月", "7月", "8月", "9月", "10月", "11月", "12月"],
         monthNamesShort: ["1月", "2月", "3月", "4月", "5月", "6月", "7月", "8月", "9月", "10月", "11月", "12月"],
         dayNamesMin: ["日", "一", "二", "三", "四", "五", "六"],
+        beforeShowDay: highlightDays,
+        onChangeMonthYear: updateCalendar,
         onSelect: getTimes
     });
 
@@ -32,21 +33,26 @@ $(document).ready(function () {
 /**
  * Instantiates the calendar AFTER ajax call
  */
-function updateCalendar() {
+function updateCalendar(year, month) {
     var id = shopSelector.val();
 
-    //console.log(calendar.datepicker('getDate'));
+    if (!year)
+        year = cDate._d.getFullYear();
 
-    $.get(url + "/api/get-available-days/" + id, function (data) {
-        jdays = [];
+    if (!month)
+        month = cDate._d.getMonth() + 1;
 
-        $.each(data, function (index, value) {
-            jdays.push(value.booking_datetime);
+    $.get(url + "/api/get-available-days", {id: id, year: year, month: month})
+        .done(function (data) {
+            jdays = [];
+
+            $.each(data, function (index, value) {
+                jdays.push(value.booking_datetime);
+            });
+
+            calendar.datepicker('refresh');
+
         });
-
-        calendar.datepicker('refresh');
-
-    });
 
     $('#dayTimes').empty();
 }

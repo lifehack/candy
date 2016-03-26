@@ -173,11 +173,15 @@ class BookingController extends Controller
         $selectedDay = Input::get('selectedDay');
         $id = Input::get('id');
 
+        $date = explode("-", $selectedDay);
+        $year = $date[0];
+        $month = $date[1];
+
         $client = new SoapClient("http://tangostudio.wicp.net:81/TangoStudio/WebServices/BookService.asmx?WSDL");
 
         $params = array(
-            'year' => '2016',
-            'month' => '03',
+            'year' => $year,
+            'month' => $month,
             'studioNum' => $id . '店'
         );
 
@@ -206,6 +210,15 @@ class BookingController extends Controller
                     [10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21],
                     $booked
                 );
+            }
+        }
+
+        $days = cal_days_in_month(CAL_GREGORIAN, $month, $year);
+        for ($i = 1; $i <= $days; $i++) {
+            $day = sprintf('%d-%02d-%02d', $year, $month, $i);
+
+            if(!array_key_exists($day, $available)){
+                $available[$day] = [10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21];
             }
         }
 

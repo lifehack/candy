@@ -28,16 +28,6 @@ class Kernel extends ConsoleKernel
     protected function schedule(Schedule $schedule)
     {
         $schedule->call(function () {
-            $client = new SoapClient("http://tangostudio.wicp.net:81/TangoStudio/WebServices/BookService.asmx?WSDL");
-
-            $params = array(
-                'year' => '2016',
-                'month' => '03',
-            );
-
-            $result = $client->GetBooksOfMonth($params)->GetBooksOfMonthResult;
-
-            $booked = json_decode($result);
 
         })->everyMinute();
     }
