@@ -34,6 +34,12 @@ class APIController extends Controller
         $booked_json = json_decode($result, true);
 
         $available = array();
+        $days = cal_days_in_month(CAL_GREGORIAN, $month, $year);
+        for ($i = 1; $i <= $days; $i++) {
+            $day = sprintf('%d-%02d-%02d', $year, $month, $i);
+
+            $available[$day] = [10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21];
+        }
         foreach ($booked_json as $booking) {
             $start = getdate(strtotime($booking['StartTime']));
 
@@ -48,22 +54,9 @@ class APIController extends Controller
                 array_push($booked, $start['hours'] + $i);
             }
 
-            if (array_key_exists($day, $available)) {
-                $available[$day] = array_diff($available[$day], $booked);
-            } else {
-                $available[$day] = array_diff(
-                    [10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21],
-                    $booked
-                );
-            }
-        }
-
-        $days = cal_days_in_month(CAL_GREGORIAN, $month, $year);
-        for ($i = 1; $i <= $days; $i++) {
-            $day = sprintf('%d-%02d-%02d', $year, $month, $i);
-
-            if(!array_key_exists($day, $available)){
-                $available[$day] = [10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21];
+            $available[$day] = array_diff($available[$day], $booked);
+            if(empty($available[$day])||count($available[$day])==0){
+                unset($available[$day]);
             }
         }
 
