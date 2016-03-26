@@ -12,7 +12,7 @@ use DateTime;
 use SoapClient;
 
 // Declare Models to be used
-use App\Models\Package;
+use App\Models\Shop;
 use App\Models\Customer;
 use App\Models\Appointment;
 use App\Models\BookingDateTime;
@@ -28,8 +28,9 @@ class BookingController extends Controller
      **/
     public function getIndex()
     {
-        $packages = Package::all();
-        return view('showPackages', ['packages' => $packages]);
+        $shops = Shop::all();
+
+        return view('showPackages', ['shops' => $shops]);
     }
 
     /**
@@ -171,12 +172,14 @@ class BookingController extends Controller
     public function getTimes()
     {
         $selectedDay = Input::get('selectedDay');
+        $id = Input::get('id');
+
         $client = new SoapClient("http://tangostudio.wicp.net:81/TangoStudio/WebServices/BookService.asmx?WSDL");
 
         $params = array(
             'year' => '2016',
             'month' => '03',
-            'studioNum' => '1店'
+            'studioNum' => $id . '店'
         );
 
         $result = $client->GetBooksOfMonth($params)->GetBooksOfMonthResult;
@@ -212,7 +215,7 @@ class BookingController extends Controller
         foreach ($available as $key => $data) {
             foreach ($data as $hour) {
 
-                if($key==$selectedDay) {
+                if ($key == $selectedDay) {
                     $book = sprintf('%s %d:00:00', $key, $hour);
 
                     $available_record = array(

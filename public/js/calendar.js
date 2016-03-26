@@ -1,72 +1,84 @@
 var url = document.getElementById("url").textContent;
 var jdays = [];
-cDate = moment();
-$('#currentDate').text("今天是 " + cDate.format("YYYY年MM月DD日") );
+var shopSelector = $('#shop');
+var calendar = $('#calendar');
 
-$(document).ready(function($){
-	createCalendar();
+cDate = moment();
+$('#currentDate').text("今天是 " + cDate.format("YYYY年MM月DD日"));
+
+$(document).ready(function () {
+
+    updateCalendar();
+
+    shopSelector.change(function () {
+        updateCalendar();
+    });
 });
 
 /**
  * Instantiates the calendar AFTER ajax call
  */
-function createCalendar() 
-{
-	$.get(url+"/api/get-available-days", function(data) {
-		$.each(data, function(index, value) {
-			jdays.push(value.booking_datetime);
-		});
+function updateCalendar() {
+    var id = shopSelector.val();
 
-		//My function to intialize the datepicker
-		$('#calendar').datepicker({
-			inline: true,
-			minDate: 0,
-			dateFormat: 'yy-mm-dd',
-			showMonthAfterYear:true,
-			yearSuffix:'年',
-			beforeShowDay: highlightDays,
-			prevText:'上月',
-			nextText:'下月',
-			monthNames: ["1月","2月","3月","4月","5月","6月","7月","8月","9月","10月","11月","12月"],
-			monthNamesShort: ["1月","2月","3月","4月","5月","6月","7月","8月","9月","10月","11月","12月"],
-			dayNamesMin:["日","一","二","三","四","五","六"],
-			onSelect: getTimes
-		});
-	});
+    $.get(url + "/api/get-available-days/" + id, function (data) {
+        jdays = [];
+
+        $.each(data, function (index, value) {
+            jdays.push(value.booking_datetime);
+        });
+
+        calendar.datepicker({
+            inline: true,
+            minDate: 0,
+            dateFormat: 'yy-mm-dd',
+            showMonthAfterYear: true,
+            beforeShowDay: highlightDays,
+            yearSuffix: '年',
+            prevText: '上月',
+            nextText: '下月',
+            monthNames: ["1月", "2月", "3月", "4月", "5月", "6月", "7月", "8月", "9月", "10月", "11月", "12月"],
+            monthNamesShort: ["1月", "2月", "3月", "4月", "5月", "6月", "7月", "8月", "9月", "10月", "11月", "12月"],
+            dayNamesMin: ["日", "一", "二", "三", "四", "五", "六"],
+            onSelect: getTimes
+        });
+    });
+
+    $('#dayTimes').empty();
 }
 
 /**
  * Highlights the days available for booking
  * @param  {datepicker date} date
- * @return {boolean, css}  
+ * @return {boolean, css}
  */
-function highlightDays(date)
-{
-	date = moment(date).format('YYYY-MM-DD');
-	for(var i = 0; i < jdays.length; i++) {
-		jDate = moment(jdays[i]).format('YYYY-MM-DD');
-		if(jDate == date) {
-			return[true, 'available'];
-		}
-	}
-	return false;
+function highlightDays(date) {
+    date = moment(date).format('YYYY-MM-DD');
+    for (var i = 0; i < jdays.length; i++) {
+        jDate = moment(jdays[i]).format('YYYY-MM-DD');
+        if (jDate == date) {
+            return [true, 'available'];
+        }
+    }
+    return false;
 }
 
 /**
  * Gets times available for the day selected
  * Populates the daytimes id with dates available
  */
-function getTimes(d)
-{
-	var dateSelected = moment(d);
-	document.getElementById('daySelect').innerHTML = dateSelected.format("YYYY年MM月DD日");
-	$.get(url+"/booking/times?selectedDay="+d, function(data) {
-		$('#dayTimes').empty();
-		$('#dayTimes').append('<h6>空闲时段</h6>');
-		for(var i in data) {
-			var rdate = data[i].booking_datetime;
-			rdate = rdate.split(" ");
-			$("#dayTimes").append('<a href="'+url+'/booking/details/'+data[i].id+'">' + rdate[1] + '</a><br>');
-		}
-	});
+function getTimes(d) {
+    var id = shopSelector.val();
+
+    var dateSelected = moment(d);
+    document.getElementById('daySelect').innerHTML = dateSelected.format("YYYY年MM月DD日");
+    $.get(url + "/booking/times?selectedDay=" + d + "&id=" + id, function (data) {
+        $('#dayTimes').empty();
+        $('#dayTimes').append('<h6>空闲时段</h6>');
+        for (var i in data) {
+            var rdate = data[i].booking_datetime;
+            rdate = rdate.split(" ");
+            $("#dayTimes").append('<a href="' + url + '/booking/details/' + data[i].id + '">' + rdate[1] + '</a><br>');
+        }
+    });
 }

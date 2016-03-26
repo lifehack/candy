@@ -10,20 +10,20 @@ use App\Http\Controllers\Controller;
 // Model Usage
 use App\Models\BookingDateTime;
 
-use SoapClient;
+use SoapClient, Log;
 
 class APIController extends Controller
 {
 
     // Get available days
-    function GetAvailableDays()
+    function GetAvailableDays($id)
     {
         $client = new SoapClient("http://tangostudio.wicp.net:81/TangoStudio/WebServices/BookService.asmx?WSDL");
 
         $params = array(
             'year' => '2016',
             'month' => '03',
-            'studioNum' => '1店'
+            'studioNum' => $id . '店'
         );
 
         $result = $client->GetBooksOfMonth($params)->GetBooksOfMonthResult;

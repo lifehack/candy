@@ -3,19 +3,20 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateTimeIntervalsTable extends Migration
+class CreateShopsTable extends Migration
 {
+
     /**
-     * Run the migrations.
+     * Create the table for the packages.
+     *
      *
      * @return void
      */
     public function up()
     {
-        Schema::create('time_intervals', function($table) {
+        Schema::create('shops', function ($table) {
             $table->increments('id');
-            $table->integer('interval');
-            $table->string('metric');
+            $table->string('shop_name');
             $table->timestamps();
         });
     }
@@ -27,6 +28,7 @@ class CreateTimeIntervalsTable extends Migration
      */
     public function down()
     {
-        //
+        Schema::drop('shops');
     }
+
 }
