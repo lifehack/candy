@@ -8,6 +8,20 @@ $('#currentDate').text("今天是 " + cDate.format("YYYY年MM月DD日"));
 
 $(document).ready(function () {
 
+    calendar.datepicker({
+        minDate: 0,
+        dateFormat: 'yy-mm-dd',
+        showMonthAfterYear: true,
+        beforeShowDay: highlightDays,
+        yearSuffix: '年',
+        nextText: '下月',
+        prevText: '上月',
+        monthNames: ["1月", "2月", "3月", "4月", "5月", "6月", "7月", "8月", "9月", "10月", "11月", "12月"],
+        monthNamesShort: ["1月", "2月", "3月", "4月", "5月", "6月", "7月", "8月", "9月", "10月", "11月", "12月"],
+        dayNamesMin: ["日", "一", "二", "三", "四", "五", "六"],
+        onSelect: getTimes
+    });
+
     updateCalendar();
 
     shopSelector.change(function () {
@@ -21,6 +35,8 @@ $(document).ready(function () {
 function updateCalendar() {
     var id = shopSelector.val();
 
+    //console.log(calendar.datepicker('getDate'));
+
     $.get(url + "/api/get-available-days/" + id, function (data) {
         jdays = [];
 
@@ -28,20 +44,8 @@ function updateCalendar() {
             jdays.push(value.booking_datetime);
         });
 
-        calendar.datepicker({
-            inline: true,
-            minDate: 0,
-            dateFormat: 'yy-mm-dd',
-            showMonthAfterYear: true,
-            beforeShowDay: highlightDays,
-            yearSuffix: '年',
-            prevText: '上月',
-            nextText: '下月',
-            monthNames: ["1月", "2月", "3月", "4月", "5月", "6月", "7月", "8月", "9月", "10月", "11月", "12月"],
-            monthNamesShort: ["1月", "2月", "3月", "4月", "5月", "6月", "7月", "8月", "9月", "10月", "11月", "12月"],
-            dayNamesMin: ["日", "一", "二", "三", "四", "五", "六"],
-            onSelect: getTimes
-        });
+        calendar.datepicker('refresh');
+
     });
 
     $('#dayTimes').empty();
@@ -78,7 +82,13 @@ function getTimes(d) {
         for (var i in data) {
             var rdate = data[i].booking_datetime;
             rdate = rdate.split(" ");
-            $("#dayTimes").append('<a href="' + url + '/booking/details/' + data[i].id + '">' + rdate[1] + '</a><br>');
+
+            var start = rdate[1];
+            var end = Number(start.split(":")[0]) + 1;
+
+            end = String(end) + ":00:00";
+
+            $("#dayTimes").append('<b>' + start + ' - ' + end + '</b><br>');
         }
     });
 }
