@@ -17,6 +17,7 @@ class CreateShopsTable extends Migration
         Schema::create('shops', function ($table) {
             $table->increments('id');
             $table->string('shop_name');
+            $table->string('shop_tel');
             $table->timestamps();
         });
     }

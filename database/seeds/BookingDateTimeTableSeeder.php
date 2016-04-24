@@ -2,7 +2,7 @@
 
 use Illuminate\Database\Seeder;
 use Illuminate\Database\Eloquent\Model;
-use App\Models\BookingDateTime;
+use App\models\BookingDateTime;
 
 class BookingDateTimeTableSeeder extends Seeder
 {

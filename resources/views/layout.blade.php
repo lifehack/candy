@@ -32,8 +32,10 @@
   <script src="{{ asset('/js/moment.js') }}"></script>
 
 </head>  
-<body>
-  <div id="url" style="display: none">{{url('')}}</div>
+<body style="background-color: #424242">
+  <div id="url" style="display:none">{{url('')}}</div>
+  <img src="image/logo.jpg" width= 104%" height="9%" />
+
 
   @yield('content')
 

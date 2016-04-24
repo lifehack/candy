@@ -12,10 +12,10 @@ use DateTime;
 use SoapClient;
 
 // Declare Models to be used
-use App\Models\Shop;
-use App\Models\Customer;
-use App\Models\Appointment;
-use App\Models\BookingDateTime;
+use App\models\Shop;
+use App\models\Customer;
+use App\models\Appointment;
+use App\models\BookingDateTime;
 
 class BookingController extends Controller
 {

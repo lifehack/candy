@@ -27,7 +27,7 @@ class CreateBookingDatetimesTable extends Migration
     public function down()
     {
         //
-        Schema::drop('booking_datetimes');
+        Schema::dropIfExists('booking_datetimes');
     }
 
 }
