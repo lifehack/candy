@@ -4,21 +4,26 @@
     <div style="border-right-width: 0px;" class="row text-center">
         <h1 style="color:white" class="text-center">预约录音</h1>
         <h3 style="color:white;font-size: medium;width:90%" class="text-left">&nbsp&nbsp&nbsp&nbsp选择店面：</h3>
-        <table class="a1" cellspacing="1" cellpadding="0"
-               style="color:white;background-color:black;font-size:small;height:35px" align="center" border="0">
+        <table class="a1" cellspacing="1" cellpadding="0" width=94%"
+               style="color:white;background-color:black;height:35px;font-size: smaller" align="center" border="0">
             <tr>
+                <td>&nbsp&nbsp&nbsp&nbsp&nbsp</td>
                 @foreach($shops as $shop)
-                    <td> &nbsp</td>
-                    <td onclick="change({{$shop->id}})" id="shop{{$shop->id}}"
+                    <td style="font-size: small%; word-break: keep-all"
+                            onclick="change({{$shop->id}})" id="shop{{$shop->id}}"
                         value="{{$shop->id}}">{{ $shop->shop_name }}</td>
-                    <td> &nbsp</td>
                 @endforeach
+                <td>&nbsp&nbsp</td>
             </tr>
         </table>
+        <table class="a1" cellspacing="1" cellpadding="0" width="94%"
+               style="color:white;background-color:black;font-size:smaller;height:35px" align="center" border="0">
+            <td><div class="row">
+                <img width="94%" height="15%" id="shop_image" src="img/shop1.jpg"> </img>
+            </div>
+            </td>
+        </table>
 
-        <div class="row">
-            <img width="94%" height="15%" id="shop_image" src="img/shop1.jpg"> </img>
-        </div>
 
         <h1 style="color:white;font-size: medium" class="text-left"> &nbsp&nbsp&nbsp&nbsp选择时间：</h1>
 
