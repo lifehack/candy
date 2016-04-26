@@ -3,8 +3,6 @@
     <head>
         <title>Be right back.</title>
 
-        <link href="//font.useso.com/css?family=Lato:100" rel="stylesheet" type="text/css">
-
         <style>
             html, body {
                 height: 100%;

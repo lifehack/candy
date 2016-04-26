@@ -23,19 +23,13 @@ $(document).ready(function () {
         onSelect: getTimes
     });
 
-    updateCalendar();
-
-    shopSelector.change(function () {
-        updateCalendar();
-    });
+    change(1);
 });
 
 /**
  * Instantiates the calendar AFTER ajax call
  */
-function updateCalendar(year, month) {
-    var id = shopSelector.val();
-
+function updateCalendar(id, year, month) {
     if (!year)
         year = cDate._d.getFullYear();
 
@@ -97,4 +91,24 @@ function getTimes(d) {
             $("#dayTimes").append('<b>' + start + ' - ' + end + '</b><br>');
         }
     });
+}
+
+var phone = [
+    'tel:010-64254655',
+    'tel:010-85696297',
+    'tel:010-88689505',
+    'tel:010-65525835',
+    'tel:010-84258453',
+    'tel:010-66086606'
+];
+
+function change(id) {
+    updateCalendar(id);
+
+    $('td').css('color', 'white');
+    $('#shop' + id).css('color', 'dodgerblue');
+
+    $('#shop_image').attr('src', 'img/shop' + id + '.jpg');
+
+    $('#shop_phone').attr('href', phone[Number(id) - 1]);
 }
