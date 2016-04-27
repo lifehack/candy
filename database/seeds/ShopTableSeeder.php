@@ -11,7 +11,7 @@ class ShopTableSeeder extends Seeder
         Eloquent::unguard();
 
         Shop::create(array(
-            'shop_name' => '雍和宫一店',
+            'shop_name' => '雍和宫1店',
             'shop_tel' => '010-1'
 
         ));
@@ -22,7 +22,7 @@ class ShopTableSeeder extends Seeder
         ));
 
         Shop::create(array(
-            'shop_name' => '石景山',
+            'shop_name' => '石景山店',
             'shop_tel' => '010-3'
         ));
 
@@ -32,13 +32,13 @@ class ShopTableSeeder extends Seeder
         ));
 
         Shop::create(array(
-            'shop_name' => '雍和宫二店',
+            'shop_name' => '雍和宫2店',
             'shop_tel' => '010-5'
         ));
 
         Shop::create(array(
             'shop_name' => '西单店',
-            'shop_tel' => '15011549677'
+            'shop_tel' => '010-6'
         ));
     }
 }

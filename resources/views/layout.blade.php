@@ -46,24 +46,22 @@
         <tr>
 
           <td style="padding-left: 4%;word-break: normal" align="center">&nbsp&nbsp预约录音</td>
-
+          <td style="padding-left: 4%;word-break: normal" align="center">|</td>
           <td style="padding-left: 4%;word-break: normal" align="center">mv欣赏</td>
-
+          <td style="padding-left: 4%;word-break: normal" align="center">|</td>
           <td style="padding-left: 4%;word-break: normal" align="center">歌曲欣赏</td>
-
-          <td style="padding-left: 4%;word-break: normal" align="center">精彩活动&nbsp</td>
-
+          <td style="padding-left: 4%;word-break: normal" align="center">|</td>
+          <td style="padding-left: 4%;word-break: normal" align="center">精彩活动&nbsp&nbsp</td>
         </tr>
 
         <tr>
           <td style="padding-left: 4%;" align="center">&nbsp&nbsp&nbsp</td>
-
+          <td style="padding-left: 4%;word-break: normal" align="center">&nbsp</td>
           <td style="padding-left: 4%;word-break: normal" align="center">(暂未开放)</td>
-
+          <td style="padding-left: 4%;word-break: normal" align="center">&nbsp</td>
           <td style="padding-left: 4%;word-break: normal" align="center">(暂未开放)</td>
-
-          <td style="padding-left: 4%;word-break: normal" align="center">(暂未开放)&nbsp</td>
-
+          <td style="padding-left: 4%;word-break: normal" align="center">&nbsp</td>
+          <td style="padding-left: 4%;word-break: normal" align="center">(暂未开放)&nbsp&nbsp</td>
         </tr>
       </table>
     </div>
