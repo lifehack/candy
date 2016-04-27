@@ -3,6 +3,8 @@ var jdays = [];
 var shopSelector = $('#shop');
 var calendar = $('#calendar');
 
+var currentId;
+
 cDate = moment();
 $('#currentDate').text("今天是 " + cDate.format("YYYY年MM月DD日"));
 
@@ -72,11 +74,10 @@ function highlightDays(date) {
  * Populates the daytimes id with dates available
  */
 function getTimes(d) {
-    var id = shopSelector.val();
 
     var dateSelected = moment(d);
     document.getElementById('daySelect').innerHTML = dateSelected.format("YYYY年MM月DD日");
-    $.get(url + "/booking/times?selectedDay=" + d + "&id=" + id, function (data) {
+    $.get(url + "/booking/times?selectedDay=" + d + "&id=" + currentId, function (data) {
         $('#dayTimes').empty();
         $('#dayTimes').append('<h6>空闲时段</h6>');
         for (var i in data) {
@@ -103,6 +104,8 @@ var phone = [
 ];
 
 function change(id) {
+    currentId = id;
+
     updateCalendar(id);
 
     $('td').css('color', 'white');
