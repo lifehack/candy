@@ -31,14 +31,14 @@ $(document).ready(function () {
 /**
  * Instantiates the calendar AFTER ajax call
  */
-function updateCalendar(id, year, month) {
+function updateCalendar(year, month) {
     if (!year)
         year = cDate._d.getFullYear();
 
     if (!month)
         month = cDate._d.getMonth() + 1;
 
-    $.get(url + "/api/get-available-days", {id: id, year: year, month: month})
+    $.get(url + "/api/get-available-days", {id: currentId, year: year, month: month})
         .done(function (data) {
             jdays = [];
 
