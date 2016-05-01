@@ -106,7 +106,7 @@ var phone = [
 function change(id) {
     currentId = id;
 
-    updateCalendar(id);
+    updateCalendar();
 
     $('td').css('color', 'white');
     $('#shop' + id).css('color', 'dodgerblue');
