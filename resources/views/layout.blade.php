@@ -33,9 +33,38 @@
 
 </head>  
 <body style="background-color: #424242">
-  <div id="url" style="display:none">{{url('')}}</div>
-  <img src="img/logo.gif" width= "105%" height="9%" />
 
+    <div id="url" style="display:none">{{url('')}}</div>
+    <div class="row" align="right">
+      <img  style="background-color:black;padding-left: 10%" width="100%" src="img/lo.jpg"> </img>
+    </div>
+
+    <div style="border-right-width: 0px" class="row text-center">
+      <table class="a1" cellspacing="0" cellpadding="10" width=100%"
+           style="color:white;background-color:black;width: 100%; font-size: smaller" align="center" border="0">
+
+        <tr>
+
+          <td style="padding-left: 4%;word-break: normal" align="center">&nbsp&nbsp预约录音</td>
+          <td style="padding-left: 4%;word-break: normal" align="center">|</td>
+          <td style="padding-left: 4%;word-break: normal" align="center">mv欣赏</td>
+          <td style="padding-left: 4%;word-break: normal" align="center">|</td>
+          <td style="padding-left: 4%;word-break: normal" align="center">歌曲欣赏</td>
+          <td style="padding-left: 4%;word-break: normal" align="center">|</td>
+          <td style="padding-left: 4%;word-break: normal" align="center">精彩活动&nbsp&nbsp</td>
+        </tr>
+
+        <tr>
+          <td style="padding-left: 4%;" align="center">&nbsp&nbsp&nbsp</td>
+          <td style="padding-left: 4%;word-break: normal" align="center">&nbsp</td>
+          <td style="padding-left: 4%;word-break: normal" align="center">(暂未开放)</td>
+          <td style="padding-left: 4%;word-break: normal" align="center">&nbsp</td>
+          <td style="padding-left: 4%;word-break: normal" align="center">(暂未开放)</td>
+          <td style="padding-left: 4%;word-break: normal" align="center">&nbsp</td>
+          <td style="padding-left: 4%;word-break: normal" align="center">(暂未开放)&nbsp&nbsp</td>
+        </tr>
+      </table>
+    </div>
 
   @yield('content')
 
