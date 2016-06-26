@@ -16,6 +16,7 @@ use App\models\Shop;
 use App\models\Customer;
 use App\models\Appointment;
 use App\models\BookingDateTime;
+use App\Models\OABooks;
 
 class BookingController extends Controller
 {
@@ -177,16 +178,15 @@ class BookingController extends Controller
         $year = $date[0];
         $month = $date[1];
 
-        $client = new SoapClient("http://tangostudio.wicp.net:13119/TangoStudio/WebServices/BookService.asmx?WSDL");
+        $startDay = date('Y-m-d', strtotime('first day of '.$year.'-'.$month));
+        $endDay = date('Y-m-d', strtotime('last day of '.$year.'-'.$month));
+        $shop = $id.'店';
 
-        $params = array(
-            'year' => $year,
-            'month' => $month,
-            'studioNum' => $id . '店'
-        );
-
-        $result = $client->GetBooksOfMonth($params)->GetBooksOfMonthResult;
-        $booked_json = json_decode($result, true);
+        $books = OABooks::select('BookStartTime', 'BookFinishTime')
+            ->where('隶属店号', $shop)
+            ->where('BookStartTime', '>=', $startDay)
+            ->where('BookFinishTime', '<=', $endDay)
+            ->get();
 
         $available = array();
         $days = cal_days_in_month(CAL_GREGORIAN, $month, $year);
@@ -195,13 +195,11 @@ class BookingController extends Controller
 
             $available[$day] = [10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21];
         }
+        foreach ($books as $book) {
+            $start = getdate(strtotime($book['BookStartTime']));
+            $end = getdate(strtotime($book['BookFinishTime']));
 
-        foreach ($booked_json as $booking) {
-            $start = getdate(strtotime($booking['StartTime']));
-
-            $end = getdate(strtotime($booking['FinishTime']));
-
-            $day = date("Y-m-d", strtotime($booking['StartTime']));
+            $day = date("Y-m-d", strtotime($book['BookStartTime']));
 
             $count = $end['hours'] - $start['hours'];
 
@@ -211,7 +209,7 @@ class BookingController extends Controller
             }
 
             $available[$day] = array_diff($available[$day], $booked);
-            if(empty($available[$day])||count($available[$day])==0){
+            if (empty($available[$day]) || count($available[$day]) == 0) {
                 unset($available[$day]);
             }
         }
