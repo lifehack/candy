@@ -177,7 +177,7 @@ class BookingController extends Controller
         $year = $date[0];
         $month = $date[1];
 
-        $client = new SoapClient("http://tangostudio.wicp.net:81/TangoStudio/WebServices/BookService.asmx?WSDL");
+        $client = new SoapClient("http://tangostudio.wicp.net:13119/TangoStudio/WebServices/BookService.asmx?WSDL");
 
         $params = array(
             'year' => $year,
