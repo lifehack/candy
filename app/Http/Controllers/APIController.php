@@ -28,10 +28,10 @@ class APIController extends Controller
         $shop = $id.'店';
 
         $books = OABooks::select('BookStartTime', 'BookFinishTime')
-            ->where('隶属店号', $shop)
-            ->where('BookStartTime', '>=', $startDay)
-            ->where('BookFinishTime', '<=', $endDay)
-            ->get();
+        ->where('隶属店号', $shop)
+        ->where('BookStartTime', '>=', $startDay)
+        ->where('BookFinishTime', '<=', $endDay)
+        ->get();
 
         $available = array();
         $days = cal_days_in_month(CAL_GREGORIAN, $month, $year);
@@ -60,7 +60,7 @@ class APIController extends Controller
         }
 
         $json = array();
-        $id = 1;
+        $id = 1; 
         foreach ($available as $key => $data) {
             foreach ($data as $hour) {
                 $book = sprintf('%s %d:00:00', $key, $hour);

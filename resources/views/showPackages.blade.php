@@ -1,9 +1,7 @@
 @extends('layout')
 @section('content')
-
-    <div style="border-right-width:0px; padding-left: 6%"  class="row text-center">
+    <div style="border-right-width:0px; class="row text-center">
         <h1 style="color:white" class="text-center">预约录音</h1>
-        <h3 style="color:white;font-size: medium;width:90%" class="text-left">&nbsp&nbsp&nbsp&nbsp选择店面：</h3>
         <table class="a1" cellspacing="1" cellpadding="0" width=94%"
                style="color:white;background-color:black;height:35px;font-size: smaller" align="center" border="0">
             <tr>
@@ -36,8 +34,9 @@
                     <div class="panel-heading" id="daySelect" style="background-color: black">
                         点击日期
                     </div>
-                    <div  align="center" class="panel-body">
-                        <p  id="dayTimes"></p>
+                    <div align="center" class="panel-body">
+                        <p id="dayTimes"></p>
+                    </div>
                     </div>
                     <div class="panel panel-primary">
                         <div class="panel-heading" id="daySelect" style="background-color: black;padding-bottom: 3%">

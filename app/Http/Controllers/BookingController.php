@@ -183,10 +183,10 @@ class BookingController extends Controller
         $shop = $id.'店';
 
         $books = OABooks::select('BookStartTime', 'BookFinishTime')
-            ->where('隶属店号', $shop)
-            ->where('BookStartTime', '>=', $startDay)
-            ->where('BookFinishTime', '<=', $endDay)
-            ->get();
+        ->where('隶属店号', $shop)
+        ->where('BookStartTime', '>=', $startDay)
+        ->where('BookFinishTime', '<=', $endDay)
+        ->get();
 
         $available = array();
         $days = cal_days_in_month(CAL_GREGORIAN, $month, $year);

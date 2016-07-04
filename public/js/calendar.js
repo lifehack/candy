@@ -26,6 +26,8 @@ $(document).ready(function () {
     });
 
     change(1);
+
+    getTimes(cDate.format("YYYY-MM-DD"));
 });
 
 /**
@@ -74,12 +76,12 @@ function highlightDays(date) {
  * Populates the daytimes id with dates available
  */
 function getTimes(d) {
-
+    var dayTimesItem = $('#dayTimes');
     var dateSelected = moment(d);
     document.getElementById('daySelect').innerHTML = dateSelected.format("YYYY年MM月DD日");
     $.get(url + "/booking/times?selectedDay=" + d + "&id=" + currentId, function (data) {
-        $('#dayTimes').empty();
-        $('#dayTimes').append('<h6>空闲时段</h6>');
+        dayTimesItem.empty();
+        dayTimesItem.append('<h6>空闲时段</h6>');
         for (var i in data) {
             var rdate = data[i].booking_datetime;
             rdate = rdate.split(" ");
@@ -89,7 +91,8 @@ function getTimes(d) {
 
             end = String(end) + ":00:00";
 
-            $("#dayTimes").append('<b>' + start + ' - ' + end + '</b><br>');
+            dayTimesItem.append('<b>' + start + ' - ' + end + '</b><br>');
+            $('iframe', parent.document).height($(document.body).height());
         }
     });
 }

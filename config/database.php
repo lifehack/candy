@@ -77,10 +77,10 @@ return [
 
         'sqlsrv' => [
             'driver'   => 'sqlsrv',
-            'host'     => env('DB_HOST', 'localhost'),
-            'database' => env('DB_DATABASE', 'forge'),
-            'username' => env('DB_USERNAME', 'forge'),
-            'password' => env('DB_PASSWORD', ''),
+            'host'     => env('DB_HOST_OA', 'localhost'),
+            'database' => env('DB_DATABASE_OA', 'forge'),
+            'username' => env('DB_USERNAME_OA', 'forge'),
+            'password' => env('DB_PASSWORD_OA', ''),
             'charset'  => 'utf8',
             'prefix'   => '',
         ],
